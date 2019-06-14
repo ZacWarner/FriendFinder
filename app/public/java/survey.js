@@ -10,6 +10,34 @@ $(document).ready(function () {
 
     $("#question").html(questions[count]);
 
+
+
+    //function to create buttons
+    function createButton() {
+        var btn1 = $("<div>").addClass("col-md-2");
+        var in1 = $("<button>").addClass("btn btn-danger").attr("id", "btn1").html("1");
+        btn1.append(in1);
+
+        var btn2 = $("<div>").addClass("col-md-2");
+        var in2 = $("<button>").addClass("btn btn-warning").attr("id", "btn2").html("2");
+        btn2.append(in2);
+
+        var btn3 = $("<div>").addClass("col-md-2");
+        var in3 = $("<button>").addClass("btn btn-success").attr("id", "btn3").html("3");
+        btn3.append(in3);
+
+        var btn4 = $("<div>").addClass("col-md-2");
+        var in4 = $("<button>").addClass("btn btn-info").attr("id", "btn4").html("4")
+        btn4.append(in4);
+
+        var btn5 = $("<div>").addClass("col-md-2");
+        var in5 = $("<button>").addClass("btn btn-primary").attr("id", "btn5").html("5")
+        btn5.append(in5);
+
+        $("#btnRow").append(btn1, btn2, btn3, btn4, btn5);
+    };
+
+    //click functions for the buttons.
     $(document).on("click", "#btn1", function () {
         answers.push(1);
         count++;
@@ -50,5 +78,5 @@ $(document).ready(function () {
         }
     }
 
-
+    createButton();
 });
