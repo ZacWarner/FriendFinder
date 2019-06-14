@@ -4,16 +4,25 @@ $(document).ready(function () {
         "In a discussion, truth should be more important than people’s sensitivities.", "You rarely get carried away by fantasies and ideas.", "You think that everyone’s views should be respected regardless of whether they are supported by facts or not.",
         "You feel more energetic after spending time with a group of people."];
 
-
+    var name;
+    var email;
     var count = 0;
     var answers = [];
 
-    $("#question").html(questions[count]);
+
+
+    //constructer for JSON
+    function survey(name, email, answers) {
+        this.name = name;
+        this.email = email;
+        this.answers = answers;
+    };
 
 
 
     //function to create buttons
     function createButton() {
+        //makes btns
         var btn1 = $("<div>").addClass("col-md-2");
         var in1 = $("<button>").addClass("btn btn-danger").attr("id", "btn1").html("1");
         btn1.append(in1);
@@ -35,7 +44,43 @@ $(document).ready(function () {
         btn5.append(in5);
 
         $("#btnRow").append(btn1, btn2, btn3, btn4, btn5);
+
+        //make tool tip spots under buttons
+        var tip1 = $("<div>").addClass("col-md-2");
+        tip1.append($("<h5>").attr("id", "btnTip1").html("not very"));
+
+        var tip2 = $("<div>").addClass("col-md-2");
+        tip2.append($("<h5>").attr("id", "btnTip2").html(""));
+
+        var tip3 = $("<div>").addClass("col-md-2");
+        tip3.append($("<h5>").attr("id", "btnTip3").html(""));
+
+        var tip4 = $("<div>").addClass("col-md-2");
+        tip4.append($("<h5>").attr("id", "btnTip4").html(""));
+
+        var tip5 = $("<div>").addClass("col-md-2");
+        tip5.append($("<h5>").attr("id", "btnTip5").html("Very Much"));
+
+        $("#clarification").append(tip1, tip2, tip3, tip4, tip5);
     };
+
+    //click function for start button
+    $(document).on("click", "#start", function () {
+        event.preventDefault();
+        name = $("#name").val().trim();
+        email = $("#email").val().trim();
+
+        $("#btnRow").empty();
+        $("#clarification").empty();
+
+
+        createButton();
+        count = 0;
+        $("#question").html(questions[count]);
+    });
+
+
+
 
     //click functions for the buttons.
     $(document).on("click", "#btn1", function () {
@@ -68,15 +113,17 @@ $(document).ready(function () {
         countCheck();
     });
 
+    //checks count
     function countCheck() {
         if (count < 10) {
             $("#question").html(questions[count]);
         }
         else {
             $("#question").html("Thats the quiz!")
+
             console.log(answers);
         }
     }
 
-    createButton();
+
 });
