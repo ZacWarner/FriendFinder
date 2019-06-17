@@ -123,52 +123,24 @@ $(document).ready(function () {
             $("#question").html("Thats the quiz!")
             $("#btnRow").empty();
             $("#clarification").empty();
-            var yourSum;
-            for (let i = 0; i < answers.length; i++) {
-                yourSum += parseInt(answers[i]);
-                console.log(yourSum);
-            };
+
             var obj = new survey(name, email, answers);
             console.log(obj);
             $.post("/api/postsurveys", obj).then(function (data) {
-                jsonSurveys = data;
-                console.log(data[0].name);
-                for (let i = 0; i < data.length; i++) {
-                    var sum = 0;
-                    for (let j = 0; j < 10; j++) {
-                        sum += parseInt(data[i].answers[j]);
-                    }
-                    sumArr[i] = sum;
-                    console.log(sumArr);
-                }
-
-                //this will find your match;
-                for (let i = 0; i < data.length - 1; i++) {
-                    var match = 100;
-                    var check;
-                    check = Math.abs(sumArr[i] - yourSum);
-                    console.log(check);
-                    if (check <= match) {
-                        match = check;
-                        matchLoc = i;
-                        console.log(matchLoc);
-                    }
-                }
                 $("#question").html("This is your match! Send them an email!");
-                var h3 = $("<h3>").html(jsonSurveys[matchLoc].name);
-                var h4 = $("<h4>").html(jsonSurveys[matchLoc].email);
-                $("#btnRow").append(h3, h4);
+                var h3 = $("<h3>").html(data.name);
+                var h4 = $("<h4>").html(data.email);
+                $("#btnRow").append(h3);
+                $("#clarification").append(h4);
+                console.log("yourMatch");
+                console.log(data);
             });
 
         }
     }
 
-    // function showMatch(loc) {
-    //     $("#question").html("This is your match! Send them an email!");
-    //     var h3 = $("<h3>").html(jsonSurveys[loc].name);
-    //     var h4 = $("<h4>").html(jsonSurveys[loc].email);
-    //     $("#btnRow").append(h3, h4);
 
-    // }
+
+
 
 });
