@@ -1,22 +1,22 @@
 # FriendFinder
-###basically a dating app.
+### basically a dating app.
 
 
 
-####it will take your answers then match you with the person who is closest to you on quizz.
+#### it will take your answers then match you with the person who is closest to you on quizz.
 
-####Made using node and express to run a server.
+#### Made using node and express to run a server.
 
 
-##The routes are:
-####/
-######For home
+## The routes are:
+#### /
+###### For home
 
-####/survey
-######For survey page
+#### /survey
+###### For survey page
 
-####/api/surveys
+#### /api/surveys
 ###### for JSON survey data
 
-####/api/postsurveys
+#### /api/postsurveys
 ###### to post a survey and returns your match.
